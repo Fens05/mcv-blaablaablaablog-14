@@ -1,8 +1,7 @@
-// URL localhost:3005/api/users
-// Required modules
+
 const router = require('express').Router();
-// Required files
 const { User, Post, Comment } = require('../../models');
+
 
 // GET All User data with blogposts and comments testing
 router.get('/', async (req, res) => {
