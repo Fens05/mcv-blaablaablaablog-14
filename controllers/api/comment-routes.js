@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const{ User, Post, Comment } = require('../../models');
+const{  Comment } = require('../../models');
 
 
 
 // get all comments
 router.get("/", (req, res) => {
-    comment.findAll({
+    Comment.findAll({
         attributes: ["comment_input", "post_id", "user_id"]
     })
         .then(commentInfo => res.json(commentInfo))
@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
 
 // get a single comment
 router.get("/:id", (req, res) => {
-    comment.findOne({
+    Comment.findOne({
         attributes: ["comment_input", "post_id", "user_id"],
         where: {
             id: req.params.id
@@ -46,7 +46,7 @@ router.get("/:id", (req, res) => {
 
 // create a comment
 router.post("/", (req, res) => {
-    comment.create({
+    Comment.create({
         comment_text: req.body.comment_text,
         user_id: req.session.user_id,
         post_id: req.body.post_id

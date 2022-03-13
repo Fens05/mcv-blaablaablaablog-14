@@ -1,14 +1,14 @@
-
 const router = require("express").Router();
-const { Post, User, Comment} = require("../../models");
+const { Post } = require("../../models");
+const withAuth = require('../../utils/auth');
+//grabing post from body... 
 
-router.get('/', (req, res) => {
-  Post.findAll({
-    attributes:['title', 'created_at'],
-    include:{
-      model: User,
-      attributes:['username']
-    }
+
+router.get('/', withAuth, (req, res) => {
+  const body = req.body;
+  Post.create({
+    ...body, userId: req.session.userId
+    
   })
     .then(postInput => res.json(postInput))
     .catch(err => {

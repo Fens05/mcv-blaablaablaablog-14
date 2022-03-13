@@ -3,5 +3,10 @@ const apiRoute = require('./api');
 const homepageRoute = require('./home-routes');
 const dashRoute = require('./dashboard-routes');
 
+
 router.use('/', homepageRoute);
-router.use('/', dashRoute);
+router.use('/dashboard', dashRoute);
+router.use('/api', apiRoute);
+
+
+module.exports = router;
